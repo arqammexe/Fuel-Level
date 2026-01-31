@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fuel Tank </title>
+	<style type="text/css">
+		* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f2847 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        }
+
+        .data-head {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 32px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 1px;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        animation: fadeInDown 0.8s ease-out;
+        }
+
+        .data-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        padding: 80px 40px 40px;
+        max-width: 1200px;
+        width: 100%;
+        }
+
+        .data-item {
+        background: linear-gradient(135deg, rgba(30, 58, 95, 0.9) 0%, rgba(15, 28, 71, 0.9) 100%);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(100, 200, 255, 0.3);
+        border-radius: 16px;
+        padding: 30px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        }
+
+        .data-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+        }
+
+        .data-item:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(100, 200, 255, 0.6);
+        box-shadow: 0 16px 48px rgba(100, 200, 255, 0.2), 0 0 30px rgba(100, 200, 255, 0.1);
+        background: linear-gradient(135deg, rgba(50, 80, 120, 0.95) 0%, rgba(25, 45, 85, 0.95) 100%);
+        }
+
+        .data-item:hover::before {
+        left: 100%;
+        }
+
+        .data-item h2 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #64c8ff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+        }
+
+        .data-item:hover h2 {
+        color: #a8e6ff;
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
+        }
+
+        .value {
+        font-size: 48px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #64c8ff 0%, #a8e6ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation: slideInUp 0.8s ease-out;
+        position: relative;
+        }
+
+        .value::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #64c8ff, transparent);
+        border-radius: 2px;
+        animation: expandWidth 0.8s ease-out 0.2s forwards;
+        transform-origin: left;
+        transform: scaleX(0);
+        }
+
+        /* Gauge-like visual indicator */
+        .data-item::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b35, #f7931e, #64c8ff, #00ff88);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        }
+
+        .data-item:hover::after {
+        opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+        .data-head {
+            font-size: 24px;
+            top: 30px;
+        }
+
+        .data-container {
+            grid-template-columns: 1fr;
+            padding: 70px 20px 20px;
+            gap: 20px;
+        }
+
+        .data-item {
+            padding: 25px;
+        }
+
+        .value {
+            font-size: 36px;
+        }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        }
+
+        @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+
+        @keyframes expandWidth {
+        to {
+            transform: scaleX(1);
+        }
+        }
+
+        /* Glow effect for dynamic updates */
+        @keyframes glow {
+        0%, 100% {
+            box-shadow: 0 0 5px rgba(100, 200, 255, 0.5), inset 0 0 10px rgba(100, 200, 255, 0.1);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(100, 200, 255, 0.8), inset 0 0 15px rgba(100, 200, 255, 0.2);
+        }
+        }
+
+        .data-item.updating {
+        animation: glow 0.6s ease-in-out;
+        }
+
+	</style>
+</head>
+<body>
+
+	<div class="data-head">Fuel Tank Level</div>
+
+	<div class="data-container">
+		<div class="data-item">
+			<h2>Temperature</h2>
+			<p class="value" id="temperature">22 &#8451;</p>
+		</div>
+		<div class="data-item">
+			<h2>Humidity</h2>
+			<p class="value" id="humidity">10%</p>
+		</div>
+		<div class="data-item">
+			<h2>Water Level</h2>
+			<p class="value" id="Level">10%</p>
+		</div>
+
+		
+	</div>
+
+	<!-- the scripts for products you want to access must be added seperatily-->
+
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+
+	<script type="module">
+	  // Import the functions you need from the SDKs you need
+	  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+	  // TODO: Add SDKs for Firebase products that you want to use
+
+	const firebaseConfig = {
+  	apiKey: "AIzaSyBxI0n-LPaAn8dAW--RLWpczN6a01W9DKE",
+  	authDomain: "seven-star-ent.firebaseapp.com",
+  	databaseURL: "https://seven-star-ent-default-rtdb.asia-southeast1.firebasedatabase.app",
+  	projectId: "seven-star-ent",
+  	storageBucket: "seven-star-ent.firebasestorage.app",
+  	messagingSenderId: "989909005914",
+  	appId: "1:989909005914:web:212d14a6d47842c8a74a63"
+	};
+
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+
+
+	  // getting reference to the database
+	  var database = firebase.database();
+
+	  //getting reference to the data we want
+	  var dataRef1 = database.ref('FuelTank/Humidity');
+	  var dataRef2 = database.ref('FuelTank/Temp');
+	  var dataRef3 = database.ref('FuelTank/Level');
+
+	  //fetch the data
+	  dataRef1.on('value', function(getdata1){
+	  	var humi = getdata1.val();
+	  	document.getElementById('humidity').innerHTML = humi + "%";
+	  })
+
+	   dataRef2.on('value', function(getdata2){
+	  	var temp = getdata2.val();
+	  	document.getElementById('temperature').innerHTML = temp + "&#8451;";
+	  })
+	  
+	  dataRef3.on('value', function(getdata3){
+	  	var temp = getdata3.val();
+	  	document.getElementById('Level').innerHTML = temp + "%";
+	  })
+
+
+	</script>
+
+</body>
+
+</html>
