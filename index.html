@@ -1,229 +1,183 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Fuel Tank </title>
+	<title>Seven Start Ent</title>
 	<style type="text/css">
 		* {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-        body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f2847 100%);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        }
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			padding: 20px;
+		}
 
-        .data-head {
-        position: absolute;
-        top: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 32px;
-        font-weight: 700;
-        color: #fff;
-        letter-spacing: 1px;
-        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        animation: fadeInDown 0.8s ease-out;
-        }
+		.data-head {
+			position: absolute;
+			top: 30px;
+			left: 30px;
+			font-size: 24px;
+			font-weight: 700;
+			color: #00d4ff;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+		}
 
-        .data-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        padding: 80px 40px 40px;
-        max-width: 1200px;
-        width: 100%;
-        }
+		.data-container {
+			background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+			border: 2px solid rgba(0, 212, 255, 0.2);
+			border-radius: 20px;
+			padding: 40px;
+			width: 100%;
+			max-width: 500px;
+			backdrop-filter: blur(10px);
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+			margin-top: 60px;
+			animation: float 3s ease-in-out infinite;
+		}
 
-        .data-item {
-        background: linear-gradient(135deg, rgba(30, 58, 95, 0.9) 0%, rgba(15, 28, 71, 0.9) 100%);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(100, 200, 255, 0.3);
-        border-radius: 16px;
-        padding: 30px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        cursor: pointer;
-        }
+		@keyframes float {
+			0%, 100% { transform: translateY(0px); }
+			50% { transform: translateY(-10px); }
+		}
 
-        .data-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.2), transparent);
-        transition: left 0.6s ease;
-        }
+		.data-item {
+			margin-bottom: 30px;
+			transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+		}
 
-        .data-item:hover {
-        transform: translateY(-8px) scale(1.02);
-        border-color: rgba(100, 200, 255, 0.6);
-        box-shadow: 0 16px 48px rgba(100, 200, 255, 0.2), 0 0 30px rgba(100, 200, 255, 0.1);
-        background: linear-gradient(135deg, rgba(50, 80, 120, 0.95) 0%, rgba(25, 45, 85, 0.95) 100%);
-        }
+		.data-item:last-child {
+			margin-bottom: 0;
+		}
 
-        .data-item:hover::before {
-        left: 100%;
-        }
+		.data-item:hover {
+			transform: translateX(10px);
+		}
 
-        .data-item h2 {
-        font-size: 14px;
-        font-weight: 600;
-        color: #64c8ff;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 15px;
-        opacity: 0.8;
-        transition: all 0.3s ease;
-        }
+		.data-item h2 {
+			font-size: 14px;
+			font-weight: 600;
+			color: #b0b0b0;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 12px;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		}
 
-        .data-item:hover h2 {
-        color: #a8e6ff;
-        opacity: 1;
-        text-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
-        }
+		.data-item .value {
+			font-size: 48px;
+			font-weight: 700;
+			color: #00d4ff;
+			font-family: 'Courier New', monospace;
+			letter-spacing: 2px;
+			text-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.2);
+			transition: all 0.3s ease;
+			display: block;
+			text-align: right;
+		}
 
-        .value {
-        font-size: 48px;
-        font-weight: 800;
-        background: linear-gradient(135deg, #64c8ff 0%, #a8e6ff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        animation: slideInUp 0.8s ease-out;
-        position: relative;
-        }
+		.data-item:nth-child(1) .value {
+			font-size: 52px;
+		}
 
-        .value::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, #64c8ff, transparent);
-        border-radius: 2px;
-        animation: expandWidth 0.8s ease-out 0.2s forwards;
-        transform-origin: left;
-        transform: scaleX(0);
-        }
+		.data-item:nth-child(2) .value {
+			color: #ff6b35;
+			text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+		}
 
-        /* Gauge-like visual indicator */
-        .data-item::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg, #ff6b35, #f7931e, #64c8ff, #00ff88);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        }
+		.data-item:nth-child(3) .value {
+			color: #00ff88;
+			text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+		}
 
-        .data-item:hover::after {
-        opacity: 1;
-        }
+		/* Animation for value changes */
+		.data-item .value.updating {
+			animation: pulse 0.6s ease-out;
+		}
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-        .data-head {
-            font-size: 24px;
-            top: 30px;
-        }
+		@keyframes pulse {
+			0% {
+				transform: scale(1);
+				opacity: 1;
+			}
+			50% {
+				transform: scale(1.1);
+				opacity: 0.7;
+			}
+			100% {
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
 
-        .data-container {
-            grid-template-columns: 1fr;
-            padding: 70px 20px 20px;
-            gap: 20px;
-        }
+		/* Responsive design */
+		@media (max-width: 600px) {
+			.data-head {
+				font-size: 18px;
+				top: 20px;
+				left: 20px;
+			}
 
-        .data-item {
-            padding: 25px;
-        }
+			.data-container {
+				padding: 30px;
+				margin-top: 50px;
+				border-radius: 15px;
+			}
 
-        .value {
-            font-size: 36px;
-        }
-        }
+			.data-item .value {
+				font-size: 36px;
+			}
 
-        /* Animations */
-        @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateX(-50%) translateY(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        }
+			.data-item:nth-child(1) .value {
+				font-size: 40px;
+			}
 
-        @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        }
+			.data-item h2 {
+				font-size: 12px;
+				margin-bottom: 8px;
+			}
 
-        @keyframes expandWidth {
-        to {
-            transform: scaleX(1);
-        }
-        }
+			.data-item {
+				margin-bottom: 25px;
+			}
+		}
 
-        /* Glow effect for dynamic updates */
-        @keyframes glow {
-        0%, 100% {
-            box-shadow: 0 0 5px rgba(100, 200, 255, 0.5), inset 0 0 10px rgba(100, 200, 255, 0.1);
-        }
-        50% {
-            box-shadow: 0 0 20px rgba(100, 200, 255, 0.8), inset 0 0 15px rgba(100, 200, 255, 0.2);
-        }
-        }
-
-        .data-item.updating {
-        animation: glow 0.6s ease-in-out;
-        }
+		/* Dark mode theme */
+		@media (prefers-color-scheme: dark) {
+			body {
+				background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+			}
+		}
 
 	</style>
 </head>
 <body>
 
-	<div class="data-head">Fuel Tank Level</div>
+	<div class="data-head">Seven Star Ent</div>
 
 	<div class="data-container">
 		<div class="data-item">
-			<h2>Temperature</h2>
-			<p class="value" id="temperature">22 &#8451;</p>
+			<h2>Price</h2>
+			<p class="value" id="price">--</p>
 		</div>
 		<div class="data-item">
-			<h2>Humidity</h2>
-			<p class="value" id="humidity">10%</p>
+			<h2>Quantity</h2>
+			<p class="value" id="qty">--</p>
 		</div>
 		<div class="data-item">
-			<h2>Water Level</h2>
-			<p class="value" id="Level">10%</p>
+			<h2>Rate</h2>
+			<p class="value" id="rate">--</p>
 		</div>
 
 		
@@ -248,7 +202,7 @@
   	projectId: "seven-star-ent",
   	storageBucket: "seven-star-ent.firebasestorage.app",
   	messagingSenderId: "989909005914",
-  	appId: "1:989909005914:web:212d14a6d47842c8a74a63"
+  	appId: "1:989909005914:web:212d14a6d47842c8a74a63",
 	};
 
 	  // Initialize Firebase
@@ -259,24 +213,24 @@
 	  var database = firebase.database();
 
 	  //getting reference to the data we want
-	  var dataRef1 = database.ref('FuelTank/Humidity');
-	  var dataRef2 = database.ref('FuelTank/Temp');
-	  var dataRef3 = database.ref('FuelTank/Level');
+	  var dataRef1 = database.ref('Dispenser/Price');
+	  var dataRef2 = database.ref('Dispenser/Qty');
+	  var dataRef3 = database.ref('Dispenser/Rate');
 
 	  //fetch the data
 	  dataRef1.on('value', function(getdata1){
-	  	var humi = getdata1.val();
-	  	document.getElementById('humidity').innerHTML = humi + "%";
+	  	var vprice= getdata1.val();
+	  	document.getElementById('price').innerHTML = vprice ;
 	  })
 
 	   dataRef2.on('value', function(getdata2){
-	  	var temp = getdata2.val();
-	  	document.getElementById('temperature').innerHTML = temp + "&#8451;";
+	  	var vqty= getdata2.val();
+	  	document.getElementById('qty').innerHTML = vqty ;
 	  })
 	  
 	  dataRef3.on('value', function(getdata3){
-	  	var temp = getdata3.val();
-	  	document.getElementById('Level').innerHTML = temp + "%";
+	  	var vrate= getdata3.val();
+	  	document.getElementById('rate').innerHTML = vrate ;
 	  })
 
 
